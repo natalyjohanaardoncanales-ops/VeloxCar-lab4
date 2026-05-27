@@ -18,6 +18,7 @@ public class Veiculo {
     private String modelo;
     private Double precio;
     private String descripcion;
+    private String imagen;
 
     public Integer getId() {
         return id;
@@ -57,5 +58,11 @@ public class Veiculo {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+    public String getImagen() {
+        return imagen;
+    }
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }
