@@ -30,21 +30,22 @@ public class CategoriasController {
         return "redirect:/categorias/index";
     }
 
-    @GetMapping("/categorias/edit/{id}")
-    public String editCategoria(@PathVariable Integer id, Model model) {
-        Categoria categoria = categoriaService.getCategoriaById(id);
-        model.addAttribute("categoria", categoria);
-        return "categorias-edit";
-    }
-    @PostMapping("/categorias/update")
-    public String updateCategoria(@ModelAttribute Categoria categoria) {
-        categoriaService.saveCategoria(categoria);
+    @GetMapping("/categorias/delete/{id}")
+    public String deleteCategoria(@PathVariable Long id) {
+        categoriaService.deleteCategoria(id);
         return "redirect:/categorias/index";
     }
 
-    @GetMapping("/categorias/delete/{id}")
-    public String deleteCategoria(@PathVariable Integer id) {
-        categoriaService.deleteCategoria(id);
+    @GetMapping("/categorias/editar/{id}")
+    public String mostrarFormularioEditar(@PathVariable Long id, Model model) {
+        Categoria categoria = categoriaService.getCategoriaById(id);
+        model.addAttribute("categoria", categoria);
+        return "categorias"; // regresa a la misma vista con los datos cargados
+    }
+
+    @PostMapping("/categorias/update")
+    public String updateCategoria(@ModelAttribute Categoria categoria) {
+        categoriaService.saveCategoria(categoria);
         return "redirect:/categorias/index";
     }
 }

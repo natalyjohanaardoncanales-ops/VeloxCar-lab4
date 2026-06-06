@@ -1,7 +1,5 @@
 package com.VeloxCar.service;
 
-
-
 import com.VeloxCar.Repository.ICategoriaRepository;
 import com.VeloxCar.models.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +18,8 @@ public class CategoriaServiceImpl implements ICategoriaService {
     }
 
     @Override
-    public Categoria getCategoriaById(Integer id) {
-        return categoriaRepository.getById(null); 
-        	
+    public Categoria getCategoriaById(Long id) {
+        return categoriaRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -31,7 +28,16 @@ public class CategoriaServiceImpl implements ICategoriaService {
     }
 
     @Override
-    public void deleteCategoria(Integer id) {
-        categoriaRepository.deleteAll(null);
+    public void deleteCategoria(Long id) {
+        categoriaRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateCategoria(Long id, Categoria categoria) {
+        Categoria existente = categoriaRepository.findById(id).orElse(null);
+        if (existente != null) {
+            existente.setNombre(categoria.getNombre()); 
+            categoriaRepository.save(existente);
+        }
     }
 }

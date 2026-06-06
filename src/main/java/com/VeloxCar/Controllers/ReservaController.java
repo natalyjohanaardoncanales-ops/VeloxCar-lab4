@@ -19,19 +19,19 @@ public class ReservaController {
     private IReservaRepository repoReserva;
 
     @Autowired
-    private IVeiculoRepository repoVeiculo;  // ← agregar esto
+    private IVeiculoRepository repoVeiculo;  
 
     @GetMapping("/reservas")
     public String mostrarReserva(Model model) {
         model.addAttribute("reserva", new Reserva());
-        model.addAttribute("vehiculos", repoVeiculo.findAll()); // ← agregar esto
+        model.addAttribute("vehiculos", repoVeiculo.findAll()); 
         return "reservas";
     }
 
     @GetMapping("/reservas/nueva")
     public String mostrarFormulario(Model model) {
         model.addAttribute("reserva", new Reserva());
-        model.addAttribute("vehiculos", repoVeiculo.findAll()); // ← agregar esto
+        model.addAttribute("vehiculos", repoVeiculo.findAll()); 
         return "reservas";
     }
 
